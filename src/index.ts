@@ -5,7 +5,7 @@ import { env } from 'hono/adapter';
 
 const app = new Hono();
 
-app.get('/', async (c) => {
+app.get('/users', async (c) => {
 	// Todo add zod validation here
 
 	const { DATABASE_URL } = env<{ DATABASE_URL: string }>(c);
@@ -18,7 +18,7 @@ app.get('/', async (c) => {
 	const usersCount = await prisma.user.count({});
 	return c.json({ usersCount, users });
 });
-app.post('/', async (c) => {
+app.post('/users', async (c) => {
 	// Todo add zod validation here
 	const body: {
 		name: string;
