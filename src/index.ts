@@ -9,9 +9,8 @@ app.get('/users', async (c) => {
 	// Todo add zod validation here
 
 	const { DATABASE_URL } = env<{ DATABASE_URL: string }>(c);
-
 	const prisma = new PrismaClient({
-		datasourceUrl: DATABASE_URL || 'prisma://your-database-url',
+		datasourceUrl: DATABASE_URL,
 	}).$extends(withAccelerate());
 
 	const users = await prisma.user.findMany({});
